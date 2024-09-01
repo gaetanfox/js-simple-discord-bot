@@ -41,18 +41,31 @@ async function execute(interaction) {
       .setFooter({
         text: 'uWu',
       })
+    console.log(weatherData)
 
     for (const day of weatherData) {
+      const precipitations = day.precipitations
+      const chanceOfRain = day.chanceOfRain
+      const chanceOfSnow = day.chanceOfSnow
+      const avgHumidity = day.avgHumidity
       const temperatureMin = isMetric
         ? day.temperatureMinC
         : day.temperatureMinF
       const temperatureMax = isMetric
         ? day.temperatureMaxC
         : day.temperatureMaxF
-
       embed.addFields({
         name: day.date,
-        value: `⬇️ Low: ${temperatureMin}º, ⬆️ High: ${temperatureMax}º`,
+        value: `⬇️ Low: ${temperatureMin}º
+                ⬆️ High: ${temperatureMax}º
+                💧 Humidity: ${avgHumidity} %
+                🌧️ Rain: ${chanceOfRain}% chance
+                ☔️ Amount ${precipitations} mm
+                ❄️ Snow: ${chanceOfSnow}%
+                
+                =========================
+
+        `,
       })
     }
     await interaction.editReply({

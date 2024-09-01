@@ -40,15 +40,6 @@ async function execute(interaction) {
       .setFooter({
         text: 'uWu',
       })
-
-    //     // for (const day of weatherData) {
-    //     //   const temperatureMin = isMetric
-    //     //     ? day.temperatureMinC
-    //     //     : day.temperatureMinF
-    //     //   const temperatureMax = isMetric
-    //     //     ? day.temperatureMaxC
-    //     //     : day.temperatureMaxF
-
     const date = weatherData.date
 
     const temperature = weatherData.temperatureC
