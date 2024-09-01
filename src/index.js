@@ -1,15 +1,22 @@
 const { Client, GatewayIntentBits, Events, Collection } = require('discord.js')
 require('dotenv').config()
 const { clientReadyHandler } = require('./events/clientReady')
+const { interactionCreateHandler } = require('./events/interactionCreate')
+const pingCommand = require('./commands/ping')
+
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
 })
-const pingCommand = require('./commands/ping')
 
 client.commands = new Collection()
 // Setting up the commands
 client.commands.set(pingCommand.data.name, pingCommand)
 
-// Less gooooo
-client.on(Events.ClientReady, clientReadyHandler)
+// Less gooooo (nly once as it is only for the login)
+client.once(Events.ClientReady, clientReadyHandler)
+
+// little dude needs to be able to reply
+client.on(Events.InteractionCreate, interactionCreateHandler)
+
+// login
 client.login(process.env.DISCORD_TOKEN)
