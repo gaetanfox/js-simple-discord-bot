@@ -3,6 +3,8 @@ require('dotenv').config()
 const { clientReadyHandler } = require('./events/clientReady')
 const { interactionCreateHandler } = require('./events/interactionCreate')
 const pingCommand = require('./commands/ping')
+const forecastCommand = require('./commands/forecast')
+const weatherCommand = require('./commands/currentWeather')
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
@@ -11,6 +13,8 @@ const client = new Client({
 client.commands = new Collection()
 // Setting up the commands
 client.commands.set(pingCommand.data.name, pingCommand)
+client.commands.set(forecastCommand.data.name, forecastCommand)
+client.commands.set(weatherCommand.data.name, weatherCommand)
 
 // Less gooooo (nly once as it is only for the login)
 client.once(Events.ClientReady, clientReadyHandler)

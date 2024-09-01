@@ -2,6 +2,8 @@ const { REST, Routes } = require('discord.js')
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN)
 
+const { fetchForecast } = require('../requests/forecast')
+
 async function clientReadyHandler(client) {
   console.log(`Logged in as ${client.user.tag}!`)
   try {
