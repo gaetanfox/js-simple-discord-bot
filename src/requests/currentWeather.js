@@ -1,23 +1,22 @@
-const axios = require('axios')
+const axios = require("axios");
 
-const URL = 'https://api.weatherapi.com/v1/current.json'
+const URL = "https://api.weatherapi.com/v1/current.json";
 
 async function fetchWeather(location) {
   return await axios({
     url: URL,
-    method: 'get',
+    method: "get",
     params: {
       q: location,
       key: process.env.WEATHER_API_KEY,
     },
-    responseType: 'json',
+    responseType: "json",
   })
     .then((response) => {
-      const city = response.data.location.name
-      const country = response.data.location.country
-      const locationName = `${city}, ${country}`
+      const city = response.data.location.name;
+      const country = response.data.location.country;
+      const locationName = `${city}, ${country}`;
 
-      console.log(response.data.current)
       const weatherData = {
         date: response.data.current.last_updated,
         temperatureC: response.data.current.temp_c,
@@ -26,20 +25,19 @@ async function fetchWeather(location) {
         humidity: response.data.current.humidity,
         feelsLikeC: response.data.current.feelslike_c,
         cloud: response.data.current.cloud,
-      }
-      console.log(weatherData)
+      };
 
       return {
         locationName,
         weatherData,
-      }
+      };
     })
     .catch((error) => {
-      console.error(error)
-      throw new Error(`Error fetching forecast for ${locationName}.`)
-    })
+      console.error(error);
+      throw new Error(`Error fetching forecast for ${locationName}.`);
+    });
 }
 
 module.exports = {
   fetchWeather,
-}
+};

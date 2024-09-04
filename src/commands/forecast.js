@@ -43,7 +43,7 @@ async function execute(interaction) {
       });
 
     for (const day of weatherData) {
-      const precipitations = day.precitipitations;
+      const precipitations = day.precipitations;
       const chanceOfRain = day.chanceOfRain;
       const chanceOfSnow = day.chanceOfSnow;
       const avgHumidity = day.avgHumidity;

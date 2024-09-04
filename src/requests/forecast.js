@@ -30,7 +30,7 @@ async function fetchForecast(location) {
             temperatureMinF: forecastDay.day.mintemp_f,
             temperatureMaxF: forecastDay.day.maxtemp_f,
 
-            precitipitations: forecastDay.day.precitipitations,
+            precipitations: forecastDay.day.totalprecip_mm,
             chanceOfRain: forecastDay.day.daily_chance_of_rain,
             chanceOfSnow: forecastDay.day.daily_will_it_snow,
             avgHumidity: forecastDay.day.avghumidity,
@@ -43,7 +43,6 @@ async function fetchForecast(location) {
         },
       );
 
-      console.log(weatherData);
       return {
         locationName,
         weatherData,
